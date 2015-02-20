@@ -30,6 +30,7 @@ int main()
     FILE *fp = NULL;
 
     if ((fp = fopen("test.csv", "r")) == NULL) { return 1; }
+
     while (fgets(buf, sizeof(buf), fp))
     {
         for (p = buf; *p; )
