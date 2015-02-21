@@ -28,8 +28,10 @@ int main()
     char field[256];
     char *p;
     FILE *fp = NULL;
+    FILE *wfp = NULL;
 
     if ((fp = fopen("test.csv", "r")) == NULL) { return 1; }
+    if ((wfp = fopen("wtest.csv", "w")) == NULL) { return 1; }
 
     while (fgets(buf, sizeof(buf), fp))
     {
@@ -37,10 +39,14 @@ int main()
         {
             p = setvalue(p, field, sizeof(field));
             printf(":%s", field);
+            fputs(":", wfp);
+            fputs(field, wfp);
         }
         puts("");
+        fputs("\n", wfp);
     }
     fclose(fp);
+    fclose(wfp);
 
     return 0;
 }
